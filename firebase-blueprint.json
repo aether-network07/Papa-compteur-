@@ -1,0 +1,59 @@
+{
+  "entities": {
+    "Project": {
+      "title": "Project",
+      "description": "A collection of scripts and character notes for a specific series or theme.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Name of the project" },
+        "notes": { "type": "string", "description": "General notes about the project" },
+        "userId": { "type": "string", "description": "The UID of the owner" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp" }
+      },
+      "required": ["name", "userId", "createdAt"]
+    },
+    "Character": {
+      "title": "Character",
+      "description": "Vocal and personality profile for a story character.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Character name" },
+        "personality": { "type": "string", "description": "Character personality description" },
+        "vocalTraits": { "type": "string", "description": "Vocal traits (e.g., raspy, high-pitched)" },
+        "notes": { "type": "string", "description": "Additional notes" },
+        "userId": { "type": "string", "description": "The UID of the owner" }
+      },
+      "required": ["name", "userId"]
+    },
+    "Script": {
+      "title": "Script",
+      "description": "A story script with tone and scenic indications.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Title of the script or episode" },
+        "rawContent": { "type": "string", "description": "The original script text" },
+        "adaptedContent": { "type": "string", "description": "The AI-adapted script text with indications" },
+        "tone": { "type": "string", "enum": ["Papa conteur", "Aventure", "Mystérieux", "Doux"], "description": "The selected storytelling tone" },
+        "projectId": { "type": "string", "description": "Optional ID of the associated project" },
+        "userId": { "type": "string", "description": "The UID of the owner" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last update timestamp" }
+      },
+      "required": ["title", "userId", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "projects": {
+      "schema": "Project",
+      "description": "User storytelling projects"
+    },
+    "characters": {
+      "schema": "Character",
+      "description": "Character vocal profiles"
+    },
+    "scripts": {
+      "schema": "Script",
+      "description": "Story scripts and voice-over guides"
+    }
+  }
+}
